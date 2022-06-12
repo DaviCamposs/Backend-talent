@@ -1,4 +1,4 @@
-import { getManager, Repository } from "typeorm";
+import { createConnection, getManager, Repository } from "typeorm";
 import { User } from "../../domain/models/User";
 import { UserRepository } from "../../domain/ports/out/UserRepository";
 import { UserEntity } from "./entities/User";
@@ -8,6 +8,7 @@ export class MySqlUserRepository implements UserRepository {
     private repository: Repository<UserEntity>
 
     constructor() {
+        this.setConnection()
         this.repository = getManager().getRepository(UserEntity)
     }
 
@@ -17,12 +18,25 @@ export class MySqlUserRepository implements UserRepository {
 
     async findByEmail(email: string): Promise<User> {
         const user = await this.repository.findOneBy({ email })
-        return user ? new User(user.name,user.email,user.password)  : null
+        return user ? new User(user.name, user.email, user.password) : null
     }
 
     async findById(id: number): Promise<User> {
         const user = await this.repository.findOneBy({ id })
-        return user ? new User(user.name,user.email,user.password)  : null
+        return user ? new User(user.name, user.email, user.password) : null
     }
-    
+
+    private async setConnection() {
+        await createConnection({
+            type: "mysql",
+            host: "localhost",
+            port: 33066,
+            username: "root",
+            password: "root",
+            database: "talent",
+            entities: [UserEntity],
+            synchronize: true
+        })
+    }
+
 }
