@@ -13,10 +13,16 @@ export function errorHandler(error: Error, request: Request, response: Response,
             title: 'Not authorized',
             message: 'Verify your credentials'
         })
-    } else if (error instanceof PasswordTooShortError ||
+    } 
+    else if (error instanceof EmailAlreadyRegisteredError ) {
+        return response.status(200).json({
+            title: 'Validation Error',
+            message: 'E-mail already registered'
+        })
+    }
+    else if (error instanceof PasswordTooShortError ||
         error instanceof InvalidEmailError ||
         error instanceof NameTooShortError ||
-        error instanceof EmailAlreadyRegisteredError ||
         error instanceof ValidationError) {
         return response.status(400).json({
             title: 'Validation error',
