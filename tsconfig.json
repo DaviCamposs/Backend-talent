@@ -8,7 +8,9 @@
         "target": "ES6",
         "esModuleInterop": true,
         "resolveJsonModule": true,
-        "outDir": "dist/"
+        "outDir": "dist/",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
     },
     "include": [
         "src",
