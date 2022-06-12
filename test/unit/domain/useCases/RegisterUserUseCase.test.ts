@@ -8,7 +8,8 @@ describe('RegisterUserUseCase Tests',() => {
 
         const userRepository : UserRepository = {
             save: jest.fn(),
-            findByEmail: jest.fn().mockResolvedValue({ id: 2, name: 'David', email: 'david@mail.com', password: '12345678' })
+            findByEmail: jest.fn().mockResolvedValue({ id: 2, name: 'David', email: 'david@mail.com', password: '12345678' }),
+            findById: jest.fn()
         }
 
         const encryptService: EncryptService = {
@@ -25,7 +26,8 @@ describe('RegisterUserUseCase Tests',() => {
     it('should hash a password before save a user', async () => {
         const userRepository : UserRepository = {
             save: jest.fn(),
-            findByEmail: jest.fn().mockResolvedValue(null)
+            findByEmail: jest.fn().mockResolvedValue(null),
+            findById: jest.fn()
         }
 
         const encryptService: EncryptService = {
@@ -43,7 +45,8 @@ describe('RegisterUserUseCase Tests',() => {
     it('should save a user with a hashed password', async () => {
         const userRepository : UserRepository = {
             save: jest.fn(),
-            findByEmail: jest.fn().mockResolvedValue(null)
+            findByEmail: jest.fn().mockResolvedValue(null),
+            findById: jest.fn()
         }
 
         const encryptService: EncryptService = {
