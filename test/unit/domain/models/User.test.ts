@@ -1,3 +1,4 @@
+import { InvalidEmailError } from "../../../../src/domain/errors/InvalidEmailError"
 import { NameTooShortError } from "../../../../src/domain/errors/NameTooShortError"
 import { PasswordTooShortError } from "../../../../src/domain/errors/PasswordTooShortError"
 import { User } from "../../../../src/domain/models/User"
@@ -12,5 +13,9 @@ describe('User Tests', () => {
 
     it('should throw an error if password has less than 8 chars', () => {
         expect(() => new User('David','david@mail.com','123456')).toThrow(PasswordTooShortError)
+    })
+
+    it('should throw an Error if email is invalid', () => {
+        expect(() => new User('David','davi@','12345678')).toThrow(InvalidEmailError)
     })
 })
