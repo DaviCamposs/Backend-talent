@@ -13,7 +13,8 @@ describe('RegisterUserUseCase Tests',() => {
         }
 
         const encryptService: EncryptService = {
-            hash: jest.fn().mockResolvedValue('hashedPassword')
+            hash: jest.fn().mockResolvedValue('hashedPassword'),
+            compare: jest.fn()
         }
 
         const sut = new RegisterUserUseCase(userRepository,encryptService)
@@ -31,7 +32,8 @@ describe('RegisterUserUseCase Tests',() => {
         }
 
         const encryptService: EncryptService = {
-            hash: jest.fn().mockResolvedValue('hashedPassword')
+            hash: jest.fn().mockResolvedValue('hashedPassword'),
+            compare: jest.fn()
         }
 
         const sut = new RegisterUserUseCase(userRepository,encryptService)
@@ -50,7 +52,8 @@ describe('RegisterUserUseCase Tests',() => {
         }
 
         const encryptService: EncryptService = {
-            hash: jest.fn().mockResolvedValue('hashedPassword')
+            hash: jest.fn().mockResolvedValue('hashedPassword'),
+            compare: jest.fn()
         }
 
         const sut = new RegisterUserUseCase(userRepository,encryptService)
