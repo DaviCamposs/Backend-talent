@@ -2,6 +2,9 @@ import { InvalidEmailError } from "../errors/InvalidEmailError"
 import { NameTooShortError } from "../errors/NameTooShortError"
 import { PasswordTooShortError } from "../errors/PasswordTooShortError"
 
+const MINIMUM_CHAR_REQUIRED_NAME = 2
+const MINIMUM_CHAR_REQUIRED_PASSWORD = 8
+
 export class User {
     public id?: number
     public name: string
@@ -9,10 +12,10 @@ export class User {
     public password: string
 
     constructor(name: string, email: string, password: string) {
-        if (name.length < 2)
+        if (name.length < MINIMUM_CHAR_REQUIRED_NAME)
             throw new NameTooShortError()
 
-        if (password.length < 8)
+        if (password.length < MINIMUM_CHAR_REQUIRED_PASSWORD)
             throw new PasswordTooShortError()
 
         if (!this.validateEmail(email))
