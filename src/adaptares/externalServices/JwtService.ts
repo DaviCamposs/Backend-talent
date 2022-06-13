@@ -3,7 +3,7 @@ import * as jwt from "jsonwebtoken";
 
 export class JwtService implements AuthenticationService {
     async generateToken(id: number, email: string): Promise<string> {
-        const token = await jwt.sign({ id, email }, 'secret');
+        const token = await jwt.sign({ id, email }, 'secret', { expiresIn: '2h' });
         return token
     }
 }
