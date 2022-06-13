@@ -14,7 +14,7 @@ export class Application {
     private mountRoutes(): void {
         this.app.use(cors({
             credentials: true,
-            origin: ['http://localhost:3000', 'http://localhost:4000', 'http://localhost:5000']
+            origin: ['http://localhost:3000', 'http://localhost:4200', 'http://localhost:5000']
         }));
         this.routeList.forEach(route => route.mountRoute(this.app));
         this.app.use(errorHandler);
